@@ -6,13 +6,13 @@ public class Course {
 	private String Number;
 	private String Title;
 	private int Units;
-	private Faculty F;
+	//private Faculty F;
 	
 	Course(String number,String title,int units, Faculty f){
 		Number = number;
 		Title = title;
 		Units = units;
-		F = f;
+		f.addCourse(this);
 	}
 	public String getNumber() {
 		return Number;
