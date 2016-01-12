@@ -27,6 +27,10 @@ public class Faculty extends Person{
 		return totalUnits;
 	}
 
+	public ArrayList getTeachingCourses() {
+		return teachingCourses;
+	}
+
 	public double getSalary() {
 		return Salary;
 	}
@@ -37,6 +41,9 @@ public class Faculty extends Person{
 	public void addCourse(Course c){
 		teachingCourses.add(c);
 	}
+	
+	
+	
 	
 	
 }

@@ -10,6 +10,8 @@ public class Student extends Person{
 	Student(String name, String phone, int age,double gpa) {
 		super(name, phone, age);
 		GPA = gpa;
+		ArrayList tc = new ArrayList<Course>();
+		takingCourses = tc;
 	}
 	protected int getTotalUnits(){
 		return 0;
@@ -23,6 +25,9 @@ public class Student extends Person{
 		this.takingCourses = takingCourses;
 	}	
 	
+	public void addCourse(Course c){
+		takingCourses.add(c);
+	}
 	
 
 }

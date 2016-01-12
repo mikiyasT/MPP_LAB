@@ -1,6 +1,5 @@
 package MPP_HW_1;
 
-import java.util.ArrayList;
 
 public class Course {
 	private String Number;

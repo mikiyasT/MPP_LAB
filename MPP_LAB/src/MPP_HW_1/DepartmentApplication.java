@@ -3,6 +3,8 @@ package MPP_HW_1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class DepartmentApplication {
 
@@ -14,6 +16,7 @@ public class DepartmentApplication {
 	      Faculty samHoward = new Faculty("Sam Howard","472-7222",55,9500);
 	      Faculty johnDoodle = new Faculty("John Doodle","472-6190",39,8600);
 	      
+	     	
 	      dept.addPerson(frankMoore);
 		  dept.addPerson(samHoward);
 		  dept.addPerson(johnDoodle);
@@ -44,13 +47,29 @@ public class DepartmentApplication {
 	      Course cs301 = new Course("cs301","Software engg",3, samHoward);
 	      Course cs450 = new Course("cs450","Advanced architecture",5,frankMoore);
 	      
+	      johnDoe.addCourse(cs201);
+	      johnDoe.addCourse(cs360);
+	      johnDoe.addCourse(cs404);
+	      johnDoe.addCourse(cs301);
+	      
+	      maryJones.addCourse(cs201);
+	      maryJones.addCourse(cs404);
+	      maryJones.addCourse(cs450);
+	      
+	      leeJohnson.addCourse(cs201);
+	      leeJohnson.addCourse(cs360);
+	      leeJohnson.addCourse(cs240);
+	      leeJohnson.addCourse(cs450);
+	      
+	      
+	      
 	      
 	      double totsalary = 0;
 
 	      while(true)
 	         {
 	         putText("Enter first letter of ");
-	         putText("getTotalSalary, showAllMembers, unitsPerFaculty or quit : ");
+	         putText("getTotalSalary, showAllMembers, unitsPerFaculty , nameAfaculty or quit : ");
 	         int choice = getChar();
 	         switch(choice)
 	            {
@@ -65,12 +84,62 @@ public class DepartmentApplication {
 	            case 'u':
 	               dept.unitsPerFaculty();
 	               break;
+	            case 'n':
+	            	   putText("Enter Name of a faculty ");
+	            	   String Name = getString();
+	            	   listStudentsTakingCourseByFaculty(Name,dept);
+		              
+		               break;
 	            case 'q': return;
 	            default:
 	               putText("Invalid entry\n");
 	            }  // end switch
 	         }  // end while  
 
+	}
+
+	private static void listStudentsTakingCourseByFaculty(String name, Department dept) {
+	      
+		ArrayList<Person> person_in_cs_dept = dept.getPersonList();
+	      Student s = null;
+	      Faculty f = null;
+	      ArrayList<Course> course_learned = null;
+	      ArrayList<Course> course_taught = null;
+	      //get the faculty information for the given name
+	      for(Person p : person_in_cs_dept)
+	      {
+	    	  
+	    	  if(p instanceof Faculty)
+	    	  {
+	    		  f = (Faculty)p;
+	    		  if(name.equals(f.getName())){
+	    			  course_taught = f.getTeachingCourses();
+	    			  break;
+	    		  }
+	    	  }   
+	    	  
+	      }
+	      
+	 	 System.out.println("List of students taking course given by faculty " + f.getName());
+	      for(Person p : person_in_cs_dept){
+	    	  if(p instanceof Student)
+	    	  {
+	    		 s = (Student)p;
+	    		 course_learned = s.getTakingCourses();
+	    	   	 Iterator it = course_learned.iterator();
+	    	
+	    	   
+	    	   	 while(it.hasNext()){
+	    	   		 Course course = (Course)it.next();
+	    	   		 String course_number = course.getNumber();
+	    	   		 if(course_taught.contains(course)){
+	    	   			 System.out.println(" Student " + s.getName() + " Course Num " + course_number);
+	    	   		 }
+	    	   	 }
+	    	  }
+	    	  
+	      }
+		
 	}
 
 	private static char getChar() throws IOException {

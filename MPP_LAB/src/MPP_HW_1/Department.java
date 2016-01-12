@@ -34,6 +34,12 @@ public class Department {
 				totalSalary += s.getSalary();
 				
 			}
+			if((p instanceof StaffStudent))
+			{
+				StaffStudent ss = (StaffStudent)p; 
+				totalSalary += ss.getSalary();
+				
+			}
 		}
 		return totalSalary;
 	}	
