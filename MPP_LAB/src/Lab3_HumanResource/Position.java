@@ -55,7 +55,7 @@ public class Position {
 			position_salary = getEmployee().getSalary();
 			
 		}
-		System.out.println("Salary paid for " + Title + position_salary);
+		System.out.println(" Total Salary paid for " + Title + " Position " + position_salary);
 		return position_salary;
 		
 	}

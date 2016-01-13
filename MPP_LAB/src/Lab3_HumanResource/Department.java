@@ -18,7 +18,7 @@ public class Department {
 		
 	}
 	public void print(){
-		System.out.println("\t -> Department Name " + Name + " ,Location " + Location);
+		System.out.println("\t -> Department Name : " + Name + " ,Location " + Location);
 		Iterator it = positions.iterator();
 		while(it.hasNext()){
 			Position p = (Position)it.next(); 
@@ -53,7 +53,7 @@ public class Department {
 			Position p = (Position)it.next(); 
 			total_department_salary += p.getSalary();
 		}
-		System.out.println("Total Salary paid by " + Name + total_department_salary);
+		System.out.println("Total Salary paid by " + Name + " departemnt " + total_department_salary + " USD");
 		return total_department_salary;
 	}
 	

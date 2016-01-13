@@ -64,7 +64,7 @@ public class Employee {
 		SSN = sSN;
 	}
 	public double getSalary() {
-		System.out.println("Salary paid for employee " + firstName + salary);
+		System.out.println("Salary paid for employee " + firstName + " "+salary + "USD");
 		return salary;
 	}
 	public void setSalary(double salary) {

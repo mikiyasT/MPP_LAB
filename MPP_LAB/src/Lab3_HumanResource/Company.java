@@ -55,7 +55,7 @@ public class Company {
 			Department d = (Department)it.next(); 
 			total_company_salary += d.getSalary();
 		}
-		System.out.println("Total Salary paid by " + Name + total_company_salary);
+		System.out.println("Total Salary paid by " + Name + " Company " + total_company_salary + " USD");
 		return total_company_salary;
 	}
 }
