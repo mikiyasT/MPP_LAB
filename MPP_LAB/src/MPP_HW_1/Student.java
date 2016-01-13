@@ -7,6 +7,9 @@ public class Student extends Person{
 	private double GPA;
 	private ArrayList takingCourses;
 	
+	Student(){
+		super();
+	}
 	Student(String name, String phone, int age,double gpa) {
 		super(name, phone, age);
 		GPA = gpa;

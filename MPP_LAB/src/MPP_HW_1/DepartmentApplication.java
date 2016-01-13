@@ -76,7 +76,7 @@ public class DepartmentApplication {
 	            case 'g':
 	               totsalary=dept.getTotalSalary();
 	               putText("Total sum of all salaries is:");
-	               putText(String.valueOf(totsalary)+"\n");              
+	               putText("$ " + String.valueOf(totsalary)+" USD \n");              
 	               break;
 	            case 's':
 	               dept.showAllMembers();
@@ -133,7 +133,7 @@ public class DepartmentApplication {
 	    	   		 Course course = (Course)it.next();
 	    	   		 String course_number = course.getNumber();
 	    	   		 if(course_taught.contains(course)){
-	    	   			 System.out.println(" Student " + s.getName() + " Course Num " + course_number);
+	    	   			 System.out.println(" Student : " + s.getName() + " , Course Num :" + course_number);
 	    	   		 }
 	    	   	 }
 	    	  }

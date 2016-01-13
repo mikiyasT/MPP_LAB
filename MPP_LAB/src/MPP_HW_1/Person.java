@@ -7,6 +7,9 @@ public class Person {
 	protected String Phone;
 	protected int Age;
 	
+	Person(){
+		
+	}
 	Person(String name, String phone , int age){
 		Name = name;
 		Phone = phone;

@@ -4,20 +4,22 @@ import java.time.LocalDate;
 
 public class StaffStudent extends Student{
 	
-	private double Salary;
-	static LocalDate startDate;
+	//private double Salary;
 	
+	static LocalDate startDate;
+	Staff staff;
 	StaffStudent(String name, String phone, int age,double gpa,double salary) {
-		super(name, phone, age,gpa);
-		Salary = salary;
+		super(name, phone, age, gpa);
+		staff = new Staff();
+		staff.setSalary(salary);
 	}
 	
 	public double getSalary() {
-		return Salary;
+		return staff.getSalary();
 	}
 
 	public void setSalary(double salary) {
-		Salary = salary;
+		staff.setSalary(salary);		
 	}
 	
 	

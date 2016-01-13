@@ -3,6 +3,9 @@ package MPP_HW_1;
 public class Staff extends Person{
 	private double Salary;
 	
+	Staff(){
+		super();
+	}
 	Staff(String name, String phone, int age,double salary) {
 		super(name, phone, age);
 		Salary = salary;

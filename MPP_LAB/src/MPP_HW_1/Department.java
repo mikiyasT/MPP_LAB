@@ -37,7 +37,7 @@ public class Department {
 			if((p instanceof StaffStudent))
 			{
 				StaffStudent ss = (StaffStudent)p; 
-				totalSalary += ss.getSalary();
+				totalSalary +=  ss.staff.getSalary();
 				
 			}
 		}
@@ -60,17 +60,17 @@ public class Department {
 			Person p = (Person) it.next();
 			if((p instanceof Faculty) )
 			{
-				System.out.println("Faculty Name"  + p.getName() + " Age "+ p.getAge()); 		
+				System.out.println("Faculty : "  + p.getName() + " , Age : "+ p.getAge()); 		
 			}
 			
 			else if((p instanceof Staff))
 			{
-				System.out.println("Staff Name "  + p.getName() + " Age "+ p.getAge()); 
+				System.out.println("Staff : "  + p.getName() + ",  Age : "+ p.getAge()); 
 				
 			}
 			else
 			{
-				System.out.println("Student Name " + p.getName() + " Age "+ p.getAge()); 
+				System.out.println("Student : " + p.getName() + " , Age : "+ p.getAge()); 
 			}
 		}
 		
@@ -84,7 +84,7 @@ public class Department {
 			if((p instanceof Faculty) )
 			{
 				Faculty  f = (Faculty)p;
-				System.out.println("Faculty Name " + f.getName() + " Total Units " + f.getTotalUnits());		
+				System.out.println("Faculty : " + f.getName() + " , Total Units " + f.getTotalUnits());		
 			}
 			
 			
