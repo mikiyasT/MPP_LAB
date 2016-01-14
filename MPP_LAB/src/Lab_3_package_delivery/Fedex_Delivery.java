@@ -2,7 +2,7 @@ package Lab_3_package_delivery;
 
 public class Fedex_Delivery implements IDeliveryMeans{
 
-	String Name;
+	String Name; 
 	
 	public Fedex_Delivery(String name) {
 		super();
