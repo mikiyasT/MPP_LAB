@@ -79,4 +79,7 @@ public class Employee {
 	public void print(){
 		System.out.println(" \t\t\t -> Employee Name : " + firstName + " "+ lastName + " ,Birth date " + birthDate);
 	}
+	public String toString(){
+		return "Employee " + " " +" " + firstName + " "+ lastName + " ,Birth date " + birthDate;
+	}
 }

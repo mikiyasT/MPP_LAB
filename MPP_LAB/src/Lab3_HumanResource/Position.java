@@ -1,11 +1,14 @@
 package Lab3_HumanResource;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Position {
 	String Title;
 	String Description;
-	Employee employee;// = new Employee();
+	Employee employee;
+	Position  superior;
+	ArrayList <Position> inferiors;
 	
 	Position(){
 		
@@ -23,6 +26,8 @@ public class Position {
 		else{
 			employee = emp;
 		}
+		superior = new Position();
+		inferiors = new ArrayList<Position>();
 	}
 	public void print(){
 		System.out.println(" \t\t -> Position Title " + Title + " ,Description " + Description);
@@ -38,8 +43,18 @@ public class Position {
 	public String getDescription() {
 		return Description;
 	}
+	public void setSuperior(Position p){
+		superior = p;
+	}
+	public Position getSuperior(){
+		return superior;
+	}
 	public void setDescription(String description) {
 		Description = description;
+	}
+	public void addInferior(Position p){
+		inferiors.add(p);
+		p.setSuperior(this);
 	}
 	public Employee getEmployee() {
 		return employee;
@@ -58,6 +73,24 @@ public class Position {
 		System.out.println(" Total Salary paid for " + Title + " Position " + position_salary);
 		return position_salary;
 		
+	}
+	public String toString(){
+		if(employee != null)
+			return "-> " + Title + " Assineged to: "+ employee.toString();
+		else
+			return "-> " + Title + " Assineged to  : None ";
+	}
+	
+	public void printDownLine(String indentStr){
+		indentStr = indentStr + "\t";
+		System.out.println(indentStr + this+ " Manages ");
+		Iterator it = inferiors.iterator();
+		while(it.hasNext()){
+			Position p = (Position)it.next();
+			p.printDownLine(indentStr);
+		}
+		
+
 	}
 	
 	

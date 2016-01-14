@@ -57,4 +57,13 @@ public class Department {
 		return total_department_salary;
 	}
 	
+	
+	public void printReportingHierarchy() {
+		Iterator it = positions.iterator();
+		while(it.hasNext()){
+			Position p = (Position)it.next();
+			p.printDownLine("");
+		}
+	}
+	
 }
