@@ -56,13 +56,14 @@ public class Package_toSend {
 		double min_sending_price = 1000000;
 		int min_sender_index = -1;
 		for(int i = 0; i < sendingMechanisms.size();i++){
-			if(sendingMechanisms.get(i).calculate_delivery_cost(weight, zone) < min_sending_price){
-				min_sending_price = sendingMechanisms.get(i).calculate_delivery_cost(weight, zone);
+			double sending_price = sendingMechanisms.get(i).calculate_delivery_cost(weight, zone);
+			if(sending_price < min_sending_price){
+				min_sending_price = sending_price;
 				min_sender_index = i;
 			}
 		}
-		System.out.println(description + "\t " + min_sending_price + "\t "+ sendingMechanisms.get(min_sender_index).getName());
-		
+		System.out.format("%s \t $%,.2f \t%s \n", description,min_sending_price ,sendingMechanisms.get(min_sender_index).getName());
+				
 		
 	}
 	
