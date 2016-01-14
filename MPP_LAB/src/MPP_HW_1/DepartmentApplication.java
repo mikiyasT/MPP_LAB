@@ -61,6 +61,10 @@ public class DepartmentApplication {
 	      leeJohnson.addCourse(cs240);
 	      leeJohnson.addCourse(cs450);
 	      
+	      StaffStudent shankar = new StaffStudent("Shankar", "5354", 23, 4, 7000);
+	  	  //Student shankar = new Student("Shankar", "5354", 23, 40);
+	  	  shankar.addCourse(cs201);
+	      
 	      
 	      
 	      
@@ -97,7 +101,8 @@ public class DepartmentApplication {
 	         }  // end while  
 
 	}
-
+	
+	
 	private static void listStudentsTakingCourseByFaculty(String name, Department dept) {
 	      
 		ArrayList<Person> person_in_cs_dept = dept.getPersonList();

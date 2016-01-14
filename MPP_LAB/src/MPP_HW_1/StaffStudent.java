@@ -12,6 +12,7 @@ public class StaffStudent extends Student{
 		super(name, phone, age, gpa);
 		staff = new Staff();
 		staff.setSalary(salary);
+		//startDate = Local
 	}
 	
 	public double getSalary() {
@@ -21,7 +22,5 @@ public class StaffStudent extends Student{
 	public void setSalary(double salary) {
 		staff.setSalary(salary);		
 	}
-	
-	
 
 }

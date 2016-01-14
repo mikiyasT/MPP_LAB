@@ -8,7 +8,6 @@ public class Fedex_Delivery implements IDeliveryMeans{
 		super();
 		Name = name;
 	}
-	@Override
 	public double calculate_delivery_cost(double weight , String zone) {
 		if( zone.equals("IA") || zone.equals("MT") || zone.equals("CA"))
 			return 0.35 * weight;

@@ -6,7 +6,7 @@ public class USMail_Delivery implements IDeliveryMeans{
 		super();
 		Name = name;
 	}
-	@Override
+	
 	public double calculate_delivery_cost(double weight , String zone) {
 		if(weight <= 3)
 			return 1;
