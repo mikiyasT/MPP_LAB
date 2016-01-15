@@ -9,14 +9,18 @@ public class PackageDeliveryApplication {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		
+		ArrayList<IDeliveryMeans> availableShippers = new ArrayList();
 		IDeliveryMeans UPS = new UPS_Delivery("UPS");
 		IDeliveryMeans FEDEX = new Fedex_Delivery("FEDEX");
 		IDeliveryMeans USMAIL = new USMail_Delivery("USMAIL");
+		IDeliveryMeans DHL = new DHL_Delivery("DHL"); //adding DHL object to the list of carriers
 		
-		ArrayList<IDeliveryMeans> availableShippers = new ArrayList();
+		
 		availableShippers.add(UPS);
 		availableShippers.add(FEDEX);
 		availableShippers.add(USMAIL);
+		availableShippers.add(DHL); // extension by just adding DHL to list of careers
+		
 		
 		Package_toSend.setSendingMechanisms(availableShippers);
 		
@@ -36,6 +40,8 @@ public class PackageDeliveryApplication {
 			Package_toSend p = new Package_toSend(desc, wt, zn);
 			packages.add(p);
 		}
+		System.out.println("\n");
+		System.out.println("List of items with cheapest shipping options");
 		for(int i = 0 ; i < packages.size();i++){
 			packages.get(i).getLowestPrice();
 		}
