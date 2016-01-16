@@ -7,7 +7,7 @@ public class Employee {
 	String birthDate;
 	String SSN;
 	double salary;
-	Position position;// = new Position();
+	Position position;
 	
 	Employee(String fName, String middleInit, String lName, String bDate,String ssn,double sal, Position pos){
 		firstName = fName;
@@ -64,7 +64,9 @@ public class Employee {
 		SSN = sSN;
 	}
 	public double getSalary() {
-		System.out.println("Salary paid for employee " + firstName + " "+salary + "USD");
+		
+		System.out.format("\t\t\t -> Salary paid for Employee  %s is $%,.2f USD \n",firstName,salary);
+		
 		return salary;
 	}
 	public void setSalary(double salary) {

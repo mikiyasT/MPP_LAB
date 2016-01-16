@@ -49,13 +49,15 @@ public class Company {
 		
 	}
 	public double getSalary(){
+		
+		System.out.println("-> Company Name : "+ Name);
 		double total_company_salary = 0;
 		Iterator it = departments.iterator();
 		while(it.hasNext()){
 			Department d = (Department)it.next(); 
 			total_company_salary += d.getSalary();
 		}
-		System.out.println("Total Salary paid by " + Name + " Company " + total_company_salary + " USD");
+		System.out.format("-> Total Salary paid by %s  Comapany is $%,.2f USD \n\n",Name,total_company_salary );
 		return total_company_salary;
 	}
 }

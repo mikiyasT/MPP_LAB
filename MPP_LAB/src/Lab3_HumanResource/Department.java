@@ -7,6 +7,7 @@ public class Department {
 	String Name;
 	String Location;
 	ArrayList positions = new ArrayList<Position>();
+	
 	Department(){
 		
 	}
@@ -15,6 +16,7 @@ public class Department {
 		Location = location;
 		if(pos != null)
 		positions = pos;
+		
 		
 	}
 	public void print(){
@@ -47,23 +49,41 @@ public class Department {
 		positions.add(p);
 	}
 	public double getSalary() {
+		System.out.println("\t -> Departement Name : "+ Name);
 		double total_department_salary = 0;
 		Iterator it = positions.iterator();
 		while(it.hasNext()){
 			Position p = (Position)it.next(); 
 			total_department_salary += p.getSalary();
 		}
-		System.out.println("Total Salary paid by " + Name + " departemnt " + total_department_salary + " USD");
+		
+		System.out.format("\t -> Total Salary paid by %s  departemnt is $%,.2f USD \n\n",Name,total_department_salary );
 		return total_department_salary;
+	}
+	
+	public Position getDepartmentHead(){
+		Iterator it = positions.iterator();
+		while(it.hasNext()){
+			Position p = (Position)it.next();
+			if(p.isDepartmentHead())
+				return p;
+		}
+		return null;
 	}
 	
 	
 	public void printReportingHierarchy() {
-		Iterator it = positions.iterator();
-		while(it.hasNext()){
-			Position p = (Position)it.next();
-			p.printDownLine("");
+		System.out.println("Department " + Name); 
+		if(getDepartmentHead()!= null){
+			System.out.println("Department Head : " + getDepartmentHead().getEmployee().getFirstName()); 
+			getDepartmentHead().printDownLine("");
 		}
+		
+//		Iterator it = positions.iterator();
+//		while(it.hasNext()){
+//			Position p = (Position)it.next();
+//			p.printDownLine("");
+//		}
 	}
 	
 }

@@ -8,7 +8,7 @@ public class Package_toSend {
 	String zone;
 	static ArrayList<IDeliveryMeans> sendingMechanisms;
 	
-	/*final*/ SendersCategory category; // made this final,?? to show [composition] . Assuming a sender will always have a category for discounts(student,senior)
+	SendersCategory category; // made this final,?? to show [composition] . Assuming a sender will always have a category for discounts(student,senior)
 	
 	
 	Package_toSend(){

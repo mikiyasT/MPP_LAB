@@ -24,7 +24,8 @@ public class PackageDeliveryApplication {
 		availableShippers.add(UPS);
 		availableShippers.add(FEDEX);
 		availableShippers.add(USMAIL);
-		availableShippers.add(DHL); // extension by just adding DHL to list of careers
+		availableShippers.add(DHL); // extension by just adding DHL to list of carriers
+		
 		
 		
 		Package_toSend.setSendingMechanisms(availableShippers);

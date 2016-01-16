@@ -29,7 +29,11 @@ public class CompanyApplication {
 		Employee tiana = new Employee("Tiana", "K", "Jeferry", "1967","789-D-23",5000, null);
 		Employee drew = new Employee("Drew", "B", "More", "1975","321-D-23",9000, null);
 		
+		Employee Rubyo = new Employee("Rubyo", "J", "Blank", "1975","321-D-23",3455, null);
+		Employee Stalin = new Employee("Stalin", "k", "More", "1975","321-D-23",9000, null);
 		
+		VP1.setEmployee(Rubyo);
+		VP2.setEmployee(Stalin);
 		
 		visualComputing.addPosition(VP1);
 		visualComputing.addPosition(engineer);
@@ -37,11 +41,12 @@ public class CompanyApplication {
 		visualComputing.addPosition(tester);
 		visualComputing.addPosition(HR);
 		
-		visualComputing.addPosition(VP2);
+		voiceReogntition.addPosition(VP2);
 		voiceReogntition.addPosition(marketer);
 		voiceReogntition.addPosition(designer);
 		voiceReogntition.addPosition(purchaser);
 		
+		VP1.makeDepartementHead();
 		VP1.addInferior(engineer);
 		VP1.addInferior(marketer);
 		
@@ -50,6 +55,7 @@ public class CompanyApplication {
 		
 		analyst.addInferior(HR);
 		
+		VP2.makeDepartementHead();
 		VP2.addInferior(marketer);
 		marketer.addInferior(designer);
 		marketer.addInferior(purchaser);
@@ -59,16 +65,23 @@ public class CompanyApplication {
 		
 		marketer.setEmployee(drew);
 		purchaser.setEmployee(tiana);
-		
+		System.out.println();
+		System.out.println("\t\t\t ------------- COMPANY STAFF INFORMATION  -----------------");
+		System.out.println();
 		samsung.print();
+		System.out.println();
+		System.out.println("\t\t\t ------------- COMPANY SALARY INFORMATION  -----------------");
+		System.out.println();
 		samsung.getSalary();
 		
 		//System.out.println(VP1 + " Manages the following Positions: ");
-		VP1.printDownLine("");
-		System.out.println("--- Departmental reporting hierarchy for " + visualComputing.getName());
+		//VP1.printDownLine("");
+		System.out.println();
+		System.out.println("\t\t\t ------------- DEPARTEMENTA REPORTING HIERATCHY  -----------------");
+		System.out.println();
 		visualComputing.printReportingHierarchy();
 //		System.out.println("Departmental reporting hierarchy for " + voiceReogntition.getName());
-//		voiceReogntition.printReportingHierarchy();
+		voiceReogntition.printReportingHierarchy();
 		
 		
 		

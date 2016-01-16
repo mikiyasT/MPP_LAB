@@ -10,6 +10,9 @@ public class Position {
 	Position  superior;
 	ArrayList <Position> inferiors;
 	
+	boolean departementHead;
+	
+	
 	Position(){
 		
 	}
@@ -28,6 +31,8 @@ public class Position {
 		}
 		superior = new Position();
 		inferiors = new ArrayList<Position>();
+		
+		departementHead = false;
 	}
 	public void print(){
 		System.out.println(" \t\t -> Position Title " + Title + " ,Description " + Description);
@@ -35,6 +40,9 @@ public class Position {
 			employee.print();
 		else
 			System.out.println(" \t\t\t -> No Employee asigned here");
+	}
+	public void makeDepartementHead(){
+		departementHead = true;
 	}
 	public String getTitle() {
 		return Title;
@@ -67,12 +75,13 @@ public class Position {
 
 	public double getSalary() {
 		double position_salary = 0;
-		
+		System.out.println("\t\t -> Position : "+ Title);
 		if(getEmployee() != null ){
 			position_salary = getEmployee().getSalary();
 			
 		}
-		System.out.println(" Total Salary paid for " + Title + " Position " + position_salary);
+		
+		System.out.format("\t\t -> Total Salary paid by %s  Position  is $%,.2f USD \n\n",Title,position_salary );
 		return position_salary;
 		
 	}
@@ -93,6 +102,11 @@ public class Position {
 		}
 		
 
+	}
+
+	public boolean isDepartmentHead() {
+		// TODO Auto-generated method stub
+		return departementHead;
 	}
 	
 	
