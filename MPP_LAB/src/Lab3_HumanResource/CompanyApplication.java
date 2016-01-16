@@ -9,6 +9,9 @@ public class CompanyApplication {
 		Department visualComputing = new Department("Visual Computing","Korea",null);
 		Department voiceReogntition = new Department("Voice Recognition","Isreal",null);
 		
+		samsung.addDepartment(visualComputing);
+		samsung.addDepartment(voiceReogntition);
+		
 		Position VP1 = new Position("Vice Presidnet  1", "Vision Leading and directional decisions", null);
 		Position VP2 = new Position("Vice Presidnet 2", "Voice Leading and directional decisions", null);
 		Position engineer = new Position("Engineer", "Engineering related works", null);
@@ -26,8 +29,7 @@ public class CompanyApplication {
 		Employee tiana = new Employee("Tiana", "K", "Jeferry", "1967","789-D-23",5000, null);
 		Employee drew = new Employee("Drew", "B", "More", "1975","321-D-23",9000, null);
 		
-		samsung.addDepartment(visualComputing);
-		samsung.addDepartment(voiceReogntition);
+		
 		
 		visualComputing.addPosition(VP1);
 		visualComputing.addPosition(engineer);

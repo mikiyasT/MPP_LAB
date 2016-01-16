@@ -40,10 +40,6 @@ public class Faculty extends Person{
 	
 	public void addCourse(Course c){
 		teachingCourses.add(c);
-	}
-	
-	
-	
-	
+	}	
 	
 }

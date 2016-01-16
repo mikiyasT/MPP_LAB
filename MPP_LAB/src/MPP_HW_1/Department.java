@@ -68,8 +68,11 @@ public class Department {
 				System.out.println("Staff : "  + p.getName() + ",  Age : "+ p.getAge()); 
 				
 			}
-			else
+			else if((p instanceof StaffStudent))
 			{
+				System.out.println("Staff Student : " + p.getName() + " , Age : "+ p.getAge()); 
+			}
+			else{
 				System.out.println("Student : " + p.getName() + " , Age : "+ p.getAge()); 
 			}
 		}

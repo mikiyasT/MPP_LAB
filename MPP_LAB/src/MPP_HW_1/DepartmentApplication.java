@@ -62,9 +62,9 @@ public class DepartmentApplication {
 	      leeJohnson.addCourse(cs450);
 	      
 	      StaffStudent shankar = new StaffStudent("Shankar", "5354", 23, 4, 7000);
-	  	  //Student shankar = new Student("Shankar", "5354", 23, 40);
 	  	  shankar.addCourse(cs201);
-	      
+	  	  shankar.addCourse(cs360);
+	  	  dept.addPerson(shankar);
 	      
 	      
 	      
@@ -80,7 +80,8 @@ public class DepartmentApplication {
 	            case 'g':
 	               totsalary=dept.getTotalSalary();
 	               putText("Total sum of all salaries is:");
-	               putText("$ " + String.valueOf(totsalary)+" USD \n");              
+	               //putText("$ " + String.valueOf(totsalary)+" USD \n");  
+	               System.out.format("$ %,.2f USD \n",totsalary);
 	               break;
 	            case 's':
 	               dept.showAllMembers();
@@ -89,7 +90,8 @@ public class DepartmentApplication {
 	               dept.unitsPerFaculty();
 	               break;
 	            case 'n':
-	            	   putText("Enter Name of a faculty ");
+	            	   putText("Enter Name of a faculty from our faculty list : ");
+	            	   listAllFaculty(dept);
 	            	   String Name = getString();
 	            	   listStudentsTakingCourseByFaculty(Name,dept);
 		              
@@ -103,6 +105,25 @@ public class DepartmentApplication {
 	}
 	
 	
+	private static void listAllFaculty(Department dept) {
+		ArrayList<Person> person_in_cs_dept = dept.getPersonList();
+	      Faculty f = null;
+	     
+	      //get the faculty information for the given name
+	      for(Person p : person_in_cs_dept)
+	      {
+	    	  
+	    	  if(p instanceof Faculty)
+	    	  {
+	    		  f = (Faculty)p;
+	    		  System.out.println(" -> " + f.getName());
+	    	  }   
+	    	  
+	      }
+		
+	}
+
+
 	private static void listStudentsTakingCourseByFaculty(String name, Department dept) {
 	      
 		ArrayList<Person> person_in_cs_dept = dept.getPersonList();

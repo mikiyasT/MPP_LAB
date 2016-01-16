@@ -6,7 +6,7 @@ public class DHL_Delivery implements IDeliveryMeans{
 		super();
 		Name = name;
 	}
-	@Override
+	
 	public double calculate_delivery_cost(double weight , String zone) {
 		//assume the rate for DHL is 0.4 * wieght
 		return 0.4 * weight;

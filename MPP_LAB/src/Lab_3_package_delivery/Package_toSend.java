@@ -8,13 +8,17 @@ public class Package_toSend {
 	String zone;
 	static ArrayList<IDeliveryMeans> sendingMechanisms;
 	
+	/*final*/ SendersCategory category; // made this final,?? to show [composition] . Assuming a sender will always have a category for discounts(student,senior)
+	
+	
 	Package_toSend(){
-		
+		category = null;
 	}
 	Package_toSend(String desc, double wt, String zn){
 		description = desc;
 		weight = wt;
 		zone = zn;
+		category = null;
 	}
 	
 	public String getDescription() {
@@ -62,9 +66,9 @@ public class Package_toSend {
 				min_sender_index = i;
 			}
 		}
-		System.out.format("%s \t $%,.2f \t%s \n", description,min_sending_price ,sendingMechanisms.get(min_sender_index).getName());
-				
-		
+		System.out.format(" Before discount : %s \t $%,.2f \t%s \n", description,min_sending_price ,sendingMechanisms.get(min_sender_index).getName());		
+		System.out.format(" After discount  : %s \t $%,.2f \t%s \n", description,min_sending_price - min_sending_price * category.getDiscount() ,sendingMechanisms.get(min_sender_index).getName());
 	}
+	
 	
 }

@@ -33,6 +33,8 @@ public class Position {
 		System.out.println(" \t\t -> Position Title " + Title + " ,Description " + Description);
 		if(employee != null)
 			employee.print();
+		else
+			System.out.println(" \t\t\t -> No Employee asigned here");
 	}
 	public String getTitle() {
 		return Title;
