@@ -7,6 +7,13 @@ public class ComissionedEmployee extends Employee {
 	double commission;
 	double baseSalary;
 	ArrayList<Order> orders_taken = new ArrayList<Order>();
+	
+	public ComissionedEmployee(String empId,double commission,double baseSalary) {
+		super(empId);
+		this.commission = commission;
+		this.baseSalary = baseSalary;
+	}
+	
 	@Override
 	public double calcGrossPay(String DateRange) {
 		int total_amt = 0;

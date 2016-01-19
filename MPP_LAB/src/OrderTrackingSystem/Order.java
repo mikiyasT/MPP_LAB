@@ -17,7 +17,10 @@ public class Order {
 		orderId = OId;
 		customerId = CId;
 		if(pList != null){
-			productList = pList;
+			for(int i =0; i < pList.size(); i++){
+				productList.add(pList.get(i));
+			}
+			
 		}
 		status = order_status.ORDERED;
 	}
@@ -52,6 +55,17 @@ public class Order {
 	
 	public order_status getOrderStatus(){
 		return status;
+	}
+	public String toString(){
+		String orderString = "";
+		orderString =  orderId + " " + customerId + " " + status + " product " ; 
+				for(int i = 0; i < productList.size();i++)
+				{
+					
+					orderString += productList.get(i).toString();
+				}
+				return orderString;
+				
 	}
 	
 

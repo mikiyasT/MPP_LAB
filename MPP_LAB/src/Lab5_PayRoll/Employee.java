@@ -5,6 +5,9 @@ import java.util.GregorianCalendar;
 public abstract class Employee {
 	String empId;
 	
+	Employee(String empId){
+		this.empId = empId;
+	}
 	public void print(){
 		
 	}
@@ -24,7 +27,7 @@ public abstract class Employee {
 		
 		PayCheck check = new PayCheck(grossPay, fica, state,medicare,local, socialSecurity, payperiod);
 		 
-		return null;
+		return check;
 		
 	}
 	

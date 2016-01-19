@@ -7,12 +7,17 @@ public class DateRange {
 	GregorianCalendar startDate;
 	GregorianCalendar endDate;
 	
+	DateRange(GregorianCalendar startDate,GregorianCalendar endDate){
+		this.startDate = startDate;
+		this.endDate   = endDate;
+	}
 	public boolean isInRange(GregorianCalendar date){
 		return false;
+ 		
 	}
 	
 	public String toString(){
-		return null;
+		return startDate.toString() + " to "+ endDate.toString();
 	}
 	
 	public static GregorianCalendar getFirstDayOfMonth(GregorianCalendar date){

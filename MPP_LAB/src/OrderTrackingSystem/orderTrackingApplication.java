@@ -67,6 +67,7 @@ public class orderTrackingApplication {
 					break;
 				case 'P':
 					P_Customer_miki.placeOrder();
+					break;
 				case 'M' :
 					P_Customer_miki.makePayment();
 					break;
