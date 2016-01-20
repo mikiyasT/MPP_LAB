@@ -13,8 +13,9 @@ public class HourlyEmployee extends Employee {
 
 
 	@Override
-	public double calcGrossPay(String DateRange) {
+	public double calcGrossPay(DateRange range) {
 		return hourlyWage * hoursPerWeek;
-		
 	}
+	
+	
 }

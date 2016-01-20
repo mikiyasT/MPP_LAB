@@ -9,10 +9,12 @@ public class SalariedEmployee extends Employee{
 	}
 	
 	@Override
-	public double calcGrossPay(String DateRange) {
+	public double calcGrossPay(DateRange range) {
 		return salary;
 		
 	}
+
+	
 
 
 }

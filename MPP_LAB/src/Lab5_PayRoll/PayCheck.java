@@ -22,6 +22,12 @@ public class PayCheck {
 	}
 
 	void print(){
+		System.out.println("The period " + payPeriod);
+		System.out.println("Fica : " + fica);
+		System.out.println(" State : " + state);
+		System.out.println(" local : " + local);
+		System.out.println(" medicare : " + medicare);
+		System.out.println("Gross : " + grossPay);
 		
 	}
 	
