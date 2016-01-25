@@ -7,7 +7,8 @@ public class testMyMatcher {
 	public static void main(String[] args) {
 		
 		//String str2 = JOptionPane.showInputDialog(null, "Enter Rule");
-		myMatcher matcher = new myMatcher("[a-z]{4}[K-Z]{1}[0-9]{5}");
+		//myMatcher matcher = new myMatcher("[a-z]{4}[K-Z]{1}[0-9]{5}");
+		myMatcher matcher = new myMatcher("[a-z]{4}");
 		System.out.println("Testing my matcher");
 		matcher.BuildRuleSet();
 		matcher.printRule();
@@ -16,7 +17,7 @@ public class testMyMatcher {
 			
 			
 			String str = JOptionPane.showInputDialog(null, "Enter String");
-			if (matcher.check(str)) {
+			if (matcher.check(str,0)) {
 				//String newstr = str.replaceAll("8", "EIGHT");
 				
 				JOptionPane.showMessageDialog(null, str + ":\n" + "VALID");
