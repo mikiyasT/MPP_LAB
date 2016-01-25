@@ -97,12 +97,30 @@ public class myMatcher {
 		
 		char ruleFirstChar = rules.get(rule_index).getStartingLetter().charAt(0);
 		char ruleLastChar =  rules.get(rule_index).getEndingLetter().charAt(0);
-		
+		int progressing_len = 0;
 		for(int i = 0; i < str.length(); i++)
 		{
 				
-				char charTocheck =  str.charAt(i);
-				if( i >= rules.get(rule_index).getMinLen()-1 && i <= rules.get(rule_index).getMaxLen()-1)
+			char charTocheck =  str.charAt(i);
+			
+			if(charTocheck >= ruleFirstChar || charTocheck <= ruleLastChar)// with in the boundary in the rule
+			{
+				progressing_len++;
+				if(progressing_len >= rules.get(rule_index).getMinLen()-1 && progressing_len <= rules.get(rule_index).getMaxLen()-1)
+				{
+					continue;
+				}
+			}
+			else
+			{
+				
+			}
+				
+			
+			
+				
+				
+				if( i >= 0 && i >= rules.get(rule_index).getMinLen()-1 && i <= rules.get(rule_index).getMaxLen()-1)
 				{
 					if(charTocheck < ruleFirstChar || charTocheck > ruleLastChar)//not with in the boundary in the rule
 					{
