@@ -1,3 +1,9 @@
+/*
+@Mikiyas Teshome
+@984615, MPP extra credit assignment
+*/
+
+
 package RegularExpression;
 
 import java.util.ArrayList;
@@ -16,13 +22,9 @@ public class myMatcher {
 	void BuildRuleSet()
 	{
 		Rule r = null;
-		//count how many [] combinations you have. This count will be the nubmber of rules
-		 //should start with '[' and end with ']' or '}'
-		//this can be checked with stack .. expression mathching
-		
 		boolean newRuleStarting = false;
 		boolean newRuleEnding = false;
-		boolean separateroFound = false; // found '-'
+		boolean separateroFound = false; 
 		boolean newRuleNumStaring = true;
 		boolean newRuleNumEnding = true;
 		
@@ -53,9 +55,6 @@ public class myMatcher {
 					break;
 				case '{':
 					newRuleNumStaring = true;
-					//assuming the length is given in the form of {4,6} 4 = min leng, and 6 is the max len.
-					//if there are no , separeted numbers start and end will be same.
-					//if after , there is no number then start will be min leng [one character long]write
 					String min_len = "";
 					String max_len = "";
 					// for {6,7}  at(i) is { at(i+1) is 6  at(i+2) is , and at(i+3) is 7 
@@ -97,98 +96,57 @@ public class myMatcher {
 		
 		char ruleFirstChar = rules.get(rule_index).getStartingLetter().charAt(0);
 		char ruleLastChar =  rules.get(rule_index).getEndingLetter().charAt(0);
-		int progressing_len = 0;
+		int len = 0;
 		for(int i = 0; i < str.length(); i++)
 		{
-				
-			char charTocheck =  str.charAt(i);
-			
-			if(charTocheck >= ruleFirstChar || charTocheck <= ruleLastChar)// with in the boundary in the rule
-			{
-				progressing_len++;
-				if(progressing_len >= rules.get(rule_index).getMinLen()-1 && progressing_len <= rules.get(rule_index).getMaxLen()-1)
+				char charTocheck =  str.charAt(i);				
+				if(charTocheck >= ruleFirstChar && charTocheck <= ruleLastChar)// with in the boundary in the rule
 				{
-					continue;
-				}
-			}
-			else
-			{
-				
-			}
-				
-			
-			
-				
-				
-				if( i >= 0 && i >= rules.get(rule_index).getMinLen()-1 && i <= rules.get(rule_index).getMaxLen()-1)
-				{
-					if(charTocheck < ruleFirstChar || charTocheck > ruleLastChar)//not with in the boundary in the rule
+					if(len < rules.get(rule_index).getMaxLen())
 					{
-						return false;
+						len++;
 					}
+					else
+					{
+						//switch to next rule, and next substring
+						if(rule_index < rules.size())
+							return check(str.substring(i),++rule_index);
+						else
+							return false;
+					}					
+					
 				}
 				else
 				{
-					//switch to next rule, and next substring
-					if(rule_index < rules.size())
-						return check(str.substring(i),rule_index++);
+					if( len >= rules.get(rule_index).getMinLen() && len <= rules.get(rule_index).getMaxLen())
+					{
+						//switch to next rule, and next substring
+						if(rule_index < rules.size())
+							return check(str.substring(i),++rule_index);
+						else
+							return false;
+						
+					}
 					else
+					{
 						return false;
+					}
+					
 				}
-				
-//				if(charTocheck < ruleFirstChar || charTocheck > ruleLastChar)//not with in the boundary in the rule
-//				{
-//					if( i >= rules.get(rule_index).getMinLen()-1 && i <= rules.get(rule_index).getMaxLen())
-//					{
-//						//subString length has not yet satisfied the first rule
-//						return false;
-//					}
-//					else
-//					{
-//						//switch to next rule, and next substring
-//						 check(str.substring(i),rule_index++);		
-//						
-//					}
-//				}
-//				
-				
 		}
+		
+		if( len >= rules.get(rule_index).getMinLen() && len <= rules.get(rule_index).getMaxLen() && rule_index == rules.size()-1)
 		return true;
-			
-	
-//		int total_length_of_string = 0;
-//		int prgoressing_len = 0;
-//		for(Rule r : rules)
-//		{
-//			total_length_of_string += r.getLen();
-//			min_total_length_of_string =r.getMinLen();
-//			max_total_length_of_string = r.getMaxLen();
-//		}
-//		//		for(Rule r: rules)
-//		{	
-//			
-//			total_length_of_string += r.getLen();
-//			for(int i = 0; i < r.getLen(); i++)
-//			{
-//				char charTocheck =  str.charAt(i+prgoressing_len);
-//				char ruleFirstChar = r.getStartingLetter().charAt(0);
-//				char ruleLastChar =  r.getEndingLetter().charAt(0);
-//				
-//				if(charTocheck < ruleFirstChar || charTocheck > ruleLastChar){
-//					return false;
-//				}
-//			}
-//			prgoressing_len += r.getLen();
-//			prgoressing_len += r.getMaxLen();
-//		}
-//		
-//		return true;
+		else
+		return false;			
+
 	}
 	
 
 }
+
 class Rule{
-	//rule/ pattern should always be included in [] and number of occurences given in {}
+	//rule/ pattern should always be included in [] and number of occurrences given in {}
 	String startingLetter;
 	String endingLetter;
 	int len = 0;
@@ -242,12 +200,8 @@ class Rule{
 	public void setMinLen(String len) {
 		this.min_len = Integer.parseInt(len);
 	}
-	
-	
+		
 	public String toString(){
-		return "Starting " + startingLetter + " Ending " + endingLetter + "Max Length " + max_len + " Min Length : " + min_len;
-	}
-	
-	
-	
+		return "Rule Starting " + startingLetter + " Ending " + endingLetter + " Max Length " + max_len + " Min Length : " + min_len;
+	}	
 }
