@@ -5,10 +5,8 @@
 
  
 package RegularExpression;
-
 import java.util.ArrayList;
 import java.util.Iterator;
-
 public class myMatcher {
 	
 	//private int numberOfRules;
