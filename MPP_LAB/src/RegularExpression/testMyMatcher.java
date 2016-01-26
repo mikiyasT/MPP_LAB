@@ -1,3 +1,7 @@
+/*
+@Mikiyas Teshome
+@984615, MPP extra credit assignment
+*/
 package RegularExpression;
 
 import javax.swing.JOptionPane;
@@ -6,10 +10,10 @@ public class testMyMatcher {
 
 	public static void main(String[] args) {
 		
-		//String str2 = JOptionPane.showInputDialog(null, "Enter Rule");
-		//myMatcher matcher = new myMatcher("[a-z]{4}[K-Z]{1}[0-9]{5}");
-		myMatcher matcher = new myMatcher("[a-z]{4}");
-		System.out.println("Testing my matcher");
+		// pass the pattern to the constructor
+		final String PATTERN = "[#]{1}[a-z]{3,7}[-]{1}[K-Z]{1,3}[-]{1}[0-9]{6}[x]{1}"; 
+		myMatcher matcher = new myMatcher(PATTERN);
+		System.out.println("Testing string matcher class");
 		matcher.BuildRuleSet();
 		matcher.printRule();
 		
@@ -17,9 +21,8 @@ public class testMyMatcher {
 			
 			
 			String str = JOptionPane.showInputDialog(null, "Enter String");
+			//pass the input string str to the method check as check(str,0)
 			if (matcher.check(str,0)) {
-				//String newstr = str.replaceAll("8", "EIGHT");
-				
 				JOptionPane.showMessageDialog(null, str + ":\n" + "VALID");
 			}
 			else{
@@ -28,6 +31,6 @@ public class testMyMatcher {
 			
 		} while (true);
 
-	}  // mikiy78654
+	}  // miki-T-984615x
 
 }
