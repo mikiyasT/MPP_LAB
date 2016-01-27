@@ -6,7 +6,6 @@ public class licensePlate {
 	private static String VALID = "VALID PLATE NUMBER";
 	private static String LICENSE_PLATE_PATTERN = "[a-zA-Z]{2}\\d{4}[a-zA-Z]{4}";
 	private static String INVALID = "INVALID PLATE NUMBER";
-	
 	public static void main(String args[]){
 		do {
 			String str = JOptionPane.showInputDialog(null, "Plate Number");
