@@ -19,7 +19,6 @@ class Ch9MatchJavaIdentifier {
        String str, reply;
        while (true) {
            str = JOptionPane.showInputDialog(null, "Identifier:");
-
            if (str.equals(STOP)) break;
            if (str.matches(VALID_PHONE_NUM_PATTEREN)) {
                reply = VALID;
