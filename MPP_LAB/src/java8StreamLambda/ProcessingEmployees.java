@@ -127,25 +127,36 @@ public static void main(String[] args)
    
    Comparator<Employee> SortbyLastName = Comparator.comparing(Employee::getLastName);
    System.out.println("There are " + list.stream().filter(beginsWithB).count()
-		+ " Employees whose name begins with letter B");
+		+ " Employees whose name begins with letter B, Sorted ");
    list.stream().filter(beginsWithB).sorted(SortbyLastName).forEach(System.out::println);
    String sr = "miki";
    //sr.toUpperCase()
    
+   
+  // new Employee("Jason", "Red", 5000, "IT")
    System.out.println("All employee whose last name begins with B capitalized ");
-   Function<Employee,String> toUpperCase = e->( e.getFirstName().toUpperCase() +" "+ e.getLastName().toUpperCase());
+   //Function<Employee,String> toUpperCase = e->( e.getFirstName().toUpperCase() +" "+ e.getLastName().toUpperCase());
+   Function<Employee,Employee> toUpperCase = e->( new Employee(e.getFirstName().toUpperCase(),e.getLastName().toUpperCase(),e.getSalary(),e.getDepartment()));
    list.stream().filter(beginsWithB).map(toUpperCase).forEach(System.out::println);
    
    System.out.println();
    System.out.println("All employees and those whose last name begins with B capitalized ");
    
-   Function<Employee,String> toUpperCaseifB = e->( (e.getLastName().startsWith("B") || e.getLastName().startsWith("b"))
-		   											? 
-		   											( e.getFirstName().toUpperCase() +" "+ e.getLastName().toUpperCase())
-		   											: 
-		   											(e.getFirstName() +" "+ e.getLastName())
-   												  	
-   												);
+//   Function<Employee,String> toUpperCaseifB = e->( (e.getLastName().startsWith("B") || e.getLastName().startsWith("b"))
+//		   											? 
+//		   											( e.getFirstName().toUpperCase() +" "+ e.getLastName().toUpperCase())
+//		   											: 
+//		   											(e.getFirstName() +" "+ e.getLastName())
+//   												  	
+//   												);
+   
+ Function<Employee,Employee> toUpperCaseifB = e->( (e.getLastName().startsWith("B") || e.getLastName().startsWith("b"))
+		 										? 
+		 										( new Employee(e.getFirstName().toUpperCase(),e.getLastName().toUpperCase(),e.getSalary(),e.getDepartment()))
+		 										: 
+		 										(e));
+
+   
    list.stream().map(toUpperCaseifB).forEach(System.out::println);
    
    //
@@ -177,18 +188,25 @@ public static void main(String[] args)
    
    //----------------------------------------------------------
 // group Employees by department
-// System.out.printf("%nEmployees by department:%n"); 
-// Map<String, List<Employee>> groupedByDepartment =
-//    list.stream()
-//        .collect(Collectors.groupingBy(Employee::getDepartment));
-// groupedByDepartment.forEach(
-//    (department, employeesInDepartment) -> 
-//    {
-//       System.out.println(department);
-//       employeesInDepartment.forEach(
-//          employee -> System.out.printf("   %s%n", employee));
-//    }
-// );
+ System.out.printf("%nEmployees by department:%n"); 
+ Map<String, List<Employee>> groupedByDepartment =
+    list.stream()
+        .collect(Collectors.groupingBy(Employee::getDepartment));
+ groupedByDepartment.forEach(
+    (department, employeesInDepartment) -> 
+    {
+       System.out.println(department);
+       employeesInDepartment.forEach(
+          employee -> System.out.printf("   %s%n", employee));
+    }
+ );
+ 
+ groupedByDepartment.forEach(
+		 (department,emplList) -> 
+		 {
+			 System.out.println(department);
+			 System.out.println("Number of employees : " + emplList.stream().count());
+		 });
 //
 // 
 // // count number of Employees in each department

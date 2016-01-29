@@ -39,5 +39,9 @@ public class Person {
 		return 0;
 	}
 	
+	public String toString(){
+		return "First Name " + getName() + " Age : " + getAge() + " Salary : " + Double.toString(getSalary());
+	}
+	
 
 }

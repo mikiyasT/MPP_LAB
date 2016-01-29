@@ -1,4 +1,4 @@
-package Lab3_HumanResource;
+package Lab7;
 
 public class Employee {
 	String firstName;
@@ -28,25 +28,6 @@ public class Employee {
 		}
 			
 	}
-    @Override
-	public boolean equals(Object e){
-    	if(! (e instanceof Employee))
-    		return false;
-    	Employee e1 = (Employee)e;
-    	
-    	if(		e1.getFirstName().equals(firstName) && 
-    			e1.getLastName().equals(lastName) && 
-    			e1.getMiddleInitial().equals(middleInitial) &&
-    			e1.getSSN().equals(SSN) &&
-    			e1.getBirthDate().equals(birthDate) &&
-    			(e1.getSalary() == salary) &&  
-    			//if both positions are null or both are the same
-    			e1.getPosition().myEquals(position)
-    			)
-    		return true;
-    	else
-    		return false;
-    }
 	
 	Employee(){
 		
@@ -102,20 +83,5 @@ public class Employee {
 	}
 	public String toString(){
 		return "Employee " + " " +" " + firstName + " "+ lastName + " ,Birth date " + birthDate;
-	}
-	public boolean myEquals(Employee employee) {
-		if(employee == null)
-			return false;
-		if(		employee.getFirstName().equals(firstName) && 
-				employee.getLastName().equals(lastName) && 
-				employee.getMiddleInitial().equals(middleInitial) &&
-				employee.getSSN().equals(SSN) &&
-				employee.getBirthDate().equals(birthDate) &&
-    			(employee.getSalary() == salary) 
-    			//if both positions are null or both are the same 
-    			)
-			return true;
-		else
-			return false;
 	}
 }

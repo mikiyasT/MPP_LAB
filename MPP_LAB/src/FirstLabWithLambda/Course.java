@@ -31,4 +31,8 @@ public class Course {
 	public void setUnits(int units) {
 		Units = units;
 	}
+	
+	public String toString(){
+		return Number;
+	}
 }

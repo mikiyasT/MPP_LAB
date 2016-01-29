@@ -1,4 +1,4 @@
-package Lab3_HumanResource;
+package Lab7;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,10 +10,6 @@ public class Position {
 	Position  superior;
 	ArrayList <Position> inferiors;
 	
-	public ArrayList<Position> getInferiors() {
-		return inferiors;
-	}
-
 	boolean departementHead;
 	
 	
@@ -38,47 +34,6 @@ public class Position {
 		
 		departementHead = false;
 	}
-	
-	public boolean equals(Object o){
-		if(o == null )
-			return false;
-		if( !(o instanceof Position))
-			return false;
-		Position p = (Position)o;
-		if( 
-				p.getDescription().equals(Description)
-				&& 
-				p.getTitle().equals(Title)
-				&&
-				p.getEmployee().myEquals(employee) && 
-				p.getSuperior().myEquals(superior)
-			)
-		{
-			ArrayList<Position> pInf = p.getInferiors();
-			ArrayList<Position> thisInf = getInferiors();
-			if(pInf.size() != thisInf.size())
-				return false;
-			for(int i = 0;i < thisInf.size(); i++){
-				if(!pInf.get(i).myEquals(thisInf.get(i)))
-					return false;
-			}
-			return true;
-		}
-		else
-			return false;
-		
-		
-	}
-	public boolean myEquals(Position position) {
-		
-		if(position == null)
-			return false;
-		if(this.Title == position.getTitle() && this.Description == position.getDescription())
-			return true;
-		else
-			return false;
-	}
-
 	public void print(){
 		System.out.println(" \t\t -> Position Title " + Title + " ,Description " + Description);
 		if(employee != null)

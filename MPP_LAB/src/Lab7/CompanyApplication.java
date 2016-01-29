@@ -1,4 +1,4 @@
-package Lab3_HumanResource;
+package Lab7;
 
 public class CompanyApplication {
 
@@ -24,13 +24,6 @@ public class CompanyApplication {
 		
 		
 		Employee miki = new Employee("Mikiyas", "M", "Workenehe", "1982","468-D-23",5500, null);
-		Employee miki2 = new Employee("Mikiyas", "M", "Workenehe", "1982","468-D-23",5500, null);
-		Employee miki3 = new Employee("Mikiyas", "T", "Workenehe", "1982","468-D-23",5500, null);
-		
-		System.out.println("Test 1"+ miki.equals(miki2));
-		System.out.println("Test 2" + miki.equals(miki3));
-		
-		
 		Employee kim = new Employee("Kim", "Y", "Peter", "1982","987-D-23",7000, null);
 		Employee longman = new Employee("Longman", "R", "Adolf", "1970","567-D-23",4500, null);
 		Employee tiana = new Employee("Tiana", "K", "Jeferry", "1967","789-D-23",5000, null);

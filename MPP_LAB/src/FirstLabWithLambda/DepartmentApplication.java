@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class DepartmentApplication {
 
@@ -48,29 +51,26 @@ public class DepartmentApplication {
 
 	      //create a big array list of person type containing all the faculty,staff and students
 		  
-		  Person[] all_person_array = {frankMoore,samHoward,johnDoodle,
-				  				 johnDoe,maryJones,leeJohnson,
-				  				 frankGore,adamDavis,davidHeck};
+		  Person[] all_person_array = {	frankMoore,samHoward,johnDoodle,
+				  				 		johnDoe,maryJones,leeJohnson,
+				  				 		frankGore,adamDavis,davidHeck
+				  				 	  };
+		  
 		  List<Person> all_person_list = Arrays.asList(all_person_array);
+
 		  
-		  Faculty[] all_faculty_array = {frankMoore,samHoward,johnDoodle};		  
-		  List<Faculty> all_faculty_list = Arrays.asList(all_faculty_array);
-		  
-		  Staff[] all_staff_array = { frankGore,adamDavis,davidHeck};
-		  List<Staff> all_staff_list = Arrays.asList(all_staff_array);
-		  
-		  //Predicate<Person> staffOrFaculty = p->((p instanceof Faculty) || (p instanceof Staff));
-		  System.out.println(" *** All faculty salary is *** " + 
-		  all_faculty_list.stream()
-		  .mapToDouble(Faculty::getSalary)
+		  Predicate<Person> staffOrFaculty = p->((p instanceof Faculty) || (p instanceof Staff));
+		  System.out.format(" *** All Person salary is $%,.2f \n ", 
+				  all_person_list.stream()
+		  .mapToDouble(Person::getSalary)
 		  .sum());
 		  
-		  System.out.println(" *** All staff salary is *** " + 
-				  all_staff_list.stream()
-				  .mapToDouble(Staff::getSalary)
-				  .sum());
-	      
 		  
+		  System.out.println("Displaying all the person list in the school");
+	      
+		  all_person_list.stream().forEach(System.out::println);
+		  
+		 
 		  
 		  
 		  Course cs201 = new Course("cs201","programming",4, johnDoodle);
@@ -94,128 +94,49 @@ public class DepartmentApplication {
 	      leeJohnson.addCourse(cs240);
 	      leeJohnson.addCourse(cs450);
 	      
-	      StaffStudent shankar = new StaffStudent("Shankar", "5354", 23, 4, 7000);
-	  	  shankar.addCourse(cs201);
-	  	  shankar.addCourse(cs360);
-	  	  dept.addPerson(shankar);
 	      
+	      Faculty[] all_faculty_array = {frankMoore,samHoward,johnDoodle};		  
+		  List<Faculty> all_faculty_list = Arrays.asList(all_faculty_array);
+		 
+		  System.out.println("Total Units Per faculty  grouping ");
+		  Map<String,List<Faculty>> groupByFaculty = all_faculty_list.stream()	
+				  									.collect(Collectors.groupingBy(Faculty::getName));
+		  groupByFaculty.forEach(
+				  (fac,faclist)->
+				  {
+					  System.out.println(fac);
+					  System.out.format(" -> Total Units given : %d \n ",
+					  faclist.stream().mapToInt(Faculty::getTotalUnits).sum());
+					  System.out.println("------------------------");
+					  faclist.stream().mapToInt(Faculty::getTotalUnits).forEach(System.out::println);
+				  }
+				);
+		  
 	      
+		  System.out.println("Total Units Per faculty with out grouping ");
+//		  all_faculty_list.stream().forEach(
+//				  (F -> { System.out.println("-> " + F.getName());
+//				  		  System.out.println("\t" + F.getTotalUnits());
+//						  })
+//				  );
+		  
+		  all_faculty_list.forEach(
+				  (F -> {
+					  	  System.out.println("-> " + F.getName());
+				  		  System.out.println("\t" + F.getTotalUnits());
+						 })
+				  );
 	      
-	      double totsalary = 0;
-
-	      while(true)
-	         {
-	         putText("Enter first letter of ");
-	         putText("getTotalSalary, showAllMembers, unitsPerFaculty , nameAfaculty or quit : ");
-	         int choice = getChar();
-	         switch(choice)
-	            {
-	            case 'g':
-	               totsalary=dept.getTotalSalary();
-	               putText("Total sum of all salaries is:");
-	               //putText("$ " + String.valueOf(totsalary)+" USD \n");  
-	               System.out.format("$ %,.2f USD \n",totsalary);
-	               break;
-	            case 's':
-	               dept.showAllMembers();
-	               break;
-	            case 'u':
-	               dept.unitsPerFaculty();
-	               break;
-	            case 'n':
-	            	   putText("Enter Name of a faculty from our faculty list : ");
-	            	   listAllFaculty(dept);
-	            	   String Name = getString();
-	            	   listStudentsTakingCourseByFaculty(Name,dept);
-		              
-		               break;
-	            case 'q': return;
-	            default:
-	               putText("Invalid entry\n");
-	            }  // end switch
-	         }  // end while  
-
-	}
-	
-	
-	private static void listAllFaculty(Department dept) {
-		ArrayList<Person> person_in_cs_dept = dept.getPersonList();
-	      Faculty f = null;
+	     System.out.println("Students grouped by course ");
+	     Student[] student_array = {johnDoe,maryJones,leeJohnson};
+	     List<Student> studnet_list = Arrays.asList(student_array);
 	     
-	      //get the faculty information for the given name
-	      for(Person p : person_in_cs_dept)
-	      {
-	    	  
-	    	  if(p instanceof Faculty)
-	    	  {
-	    		  f = (Faculty)p;
-	    		  System.out.println(" -> " + f.getName());
-	    	  }   
-	    	  
-	      }
-		
+	     String str;
+	     //Predicate<Student,Course> studentTakingCourse = s ->(e.getTakingCourses().contains(c));
+	     
+	    studnet_list.stream()
+	      .flatMap(student->student.getTakingCourses().stream())
+	      .distinct()
+	      .forEach(System.out::println);
 	}
-
-
-	private static void listStudentsTakingCourseByFaculty(String name, Department dept) {
-	      
-		ArrayList<Person> person_in_cs_dept = dept.getPersonList();
-	      Student s = null;
-	      Faculty f = null;
-	      ArrayList<Course> course_learned = null;
-	      ArrayList<Course> course_taught = null;
-	      //get the faculty information for the given name
-	      for(Person p : person_in_cs_dept)
-	      {
-	    	  
-	    	  if(p instanceof Faculty)
-	    	  {
-	    		  f = (Faculty)p;
-	    		  if(name.equals(f.getName())){
-	    			  course_taught = f.getTeachingCourses();
-	    			  break;
-	    		  }
-	    	  }   
-	    	  
-	      }
-	      
-	 	 System.out.println("List of students taking course given by faculty " + f.getName());
-	      for(Person p : person_in_cs_dept){
-	    	  if(p instanceof Student)
-	    	  {
-	    		 s = (Student)p;
-	    		 course_learned = s.getTakingCourses();
-	    	   	 Iterator it = course_learned.iterator();
-	    	
-	    	   
-	    	   	 while(it.hasNext()){
-	    	   		 Course course = (Course)it.next();
-	    	   		 String course_number = course.getNumber();
-	    	   		 if(course_taught.contains(course)){
-	    	   			 System.out.println(" Student : " + s.getName() + " , Course Num :" + course_number);
-	    	   		 }
-	    	   	 }
-	    	  }
-	    	  
-	      }
-		
-	}
-
-	private static char getChar() throws IOException {
-		String s = getString();
-	      return s.charAt(0);
-
-	}
-
-	private static String getString() throws IOException {
-		 	BufferedReader isr = new BufferedReader(new InputStreamReader(System.in));
-			String s = isr.readLine();
-			return s;
-	}
-
-	private static void putText(String string) {
-		System.out.println(string);
-		
-	}
-
 }
