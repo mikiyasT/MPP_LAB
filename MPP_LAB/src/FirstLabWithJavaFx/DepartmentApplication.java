@@ -19,7 +19,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
+import javafx.stage.Stage;    
 
 public class DepartmentApplication extends Application implements EventHandler{
 
