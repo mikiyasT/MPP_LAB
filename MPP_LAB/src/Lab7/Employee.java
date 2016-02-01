@@ -84,4 +84,40 @@ public class Employee {
 	public String toString(){
 		return "Employee " + " " +" " + firstName + " "+ lastName + " ,Birth date " + birthDate;
 	}
+	public boolean equals(Object o){
+		if(o == null)
+			return false;
+		if(!(o instanceof Employee))
+			return false;
+		Employee e = (Employee)o;
+		if(this.basicEquals(e))
+		{
+			if(this.getPosition().basicEqual(e.getPosition()))
+				return true;
+		}
+		return false;
+		
+	}
+
+	public boolean basicEquals(Employee employee) {
+		if(employee == null)
+			return false;
+		else if(
+				firstName.equals(employee.getFirstName()) 
+				&&
+				middleInitial.equals(employee.getMiddleInitial())
+				&&
+				lastName.equals(employee.getLastName())
+				&&
+				birthDate.equals(employee.getBirthDate())
+				&&
+				SSN.equals(employee.getSSN())
+				&&
+				(salary == employee.getSalary())
+				)
+			return true;
+		else
+			return false;
+			
+	}
 }

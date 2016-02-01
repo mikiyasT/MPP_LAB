@@ -27,7 +27,27 @@ public class StringUtility extends Application implements EventHandler{
 	
 	@Override
 	public void handle(Event event) {
-		// TODO Auto-generated method stub
+		if(event.getSource() == btnCntLetters){
+			if(txtInput.getText() != null)
+				txtOutput.setText(Integer.toString(txtInput.getText().length()));
+		}else if(event.getSource() == btnReverseLettters){
+			if(txtInput.getText() != null){
+				String rev = "";
+				for(int i = txtInput.getText().length() - 1; i >= 0; i--)
+					rev += txtInput.getText().charAt(i);
+				txtOutput.setText(rev);	
+				
+			}
+			
+		}else if(event.getSource() == btnRemoveDuplicates){
+			String noDup = "";
+			for(int i = 0; i < txtInput.getText().length(); i++){
+				if(!noDup.contains("" + txtInput.getText().charAt(i)))
+				noDup += txtInput.getText().charAt(i);					
+			}
+			txtOutput.setText(noDup);	
+			
+		}
 		
 	}
 
@@ -42,6 +62,11 @@ public class StringUtility extends Application implements EventHandler{
 		btnCntLetters =  new Button("Count Letters");
 		btnRemoveDuplicates = new Button("Remove Dupliates");
 		btnReverseLettters = new Button("Reverse Letters");
+		
+		btnCntLetters.setOnAction(this);
+		btnRemoveDuplicates.setOnAction(this);
+		btnReverseLettters.setOnAction(this);
+		
 		lInput = new Label("Input");
 		lOutput = new Label("Output");
 		txtInput = new TextField();

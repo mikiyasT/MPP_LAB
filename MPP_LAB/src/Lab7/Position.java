@@ -109,5 +109,31 @@ public class Position {
 		return departementHead;
 	}
 	
+	public boolean equals(Object o){
+		if(o == null)
+			return false;
+		if(!(o instanceof Position))
+			return false;
+		Position p = (Position)o;
+		if(this.basicEqual(p)){
+			for(Position p1 : inferiors)
+			{
+				if(!p1.basicEqual(p))
+					return false;
+			}
+			
+		}
+		return true;
+	}
+
+	public boolean basicEqual(Position p) {
+		if( p == null)
+			return false;
+		else if(Title.equals(p.getTitle()) && Description.equals(p.getDescription())/* && employee.basicEquals(p.getEmployee())*/)
+			return true;
+		else
+			return false;
+	}
+	
 	
 }

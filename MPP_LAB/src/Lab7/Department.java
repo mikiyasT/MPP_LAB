@@ -78,12 +78,23 @@ public class Department {
 			System.out.println("Department Head : " + getDepartmentHead().getEmployee().getFirstName()); 
 			getDepartmentHead().printDownLine("");
 		}
+	}
 		
-//		Iterator it = positions.iterator();
-//		while(it.hasNext()){
-//			Position p = (Position)it.next();
-//			p.printDownLine("");
-//		}
+		public boolean equals(Object o){
+			
+			if(o == null)
+				return false;
+			if(!(o instanceof Department))
+				return false;
+			
+			Department d = (Department)o;
+			if( this.getLocation().equals(d.getLocation()) && this.getName().equals(d.getName()))
+				return true;
+			else
+				return false;
+		}
+		
+
 	}
 	
-}
+

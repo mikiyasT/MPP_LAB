@@ -34,6 +34,9 @@ public class Person {
 	public void setAge(int age) {
 		Age = age;
 	}
+	public String toString(){
+		return "Name : " + Name + "Phone : " + Phone + "Age: " + Age;
+	}
 	
 
 }

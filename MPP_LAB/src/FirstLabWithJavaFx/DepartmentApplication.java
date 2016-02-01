@@ -7,26 +7,41 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import javafx.application.Application;
-import javafx.event.Event;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;    
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import javafx.util.Callback;    
 
-public class DepartmentApplication extends Application implements EventHandler{
+public class DepartmentApplication extends Application /*implements EventHandler*/{
 
+	private MenuItem menu_item_members;
+	
+	private static Department dept = null;
+	
+	
 	public static void main(String[] args) throws IOException {
-		 launch(args);
+		
 		  System.out.println("Eclipse system test ");
-	      Department dept = new Department("ComputerScience");
+	      dept = new Department("ComputerScience");
 	      
 	      Faculty frankMoore = new Faculty("Frank Moore","472-5921",43,10000);	
 	      Faculty samHoward = new Faculty("Sam Howard","472-7222",55,9500);
@@ -86,38 +101,39 @@ public class DepartmentApplication extends Application implements EventHandler{
 	      
 	      double totsalary = 0;
 
-	      while(true)
-	         {
-	         putText("Enter first letter of ");
-	         putText("getTotalSalary, showAllMembers, unitsPerFaculty , nameAfaculty or quit : ");
-	         int choice = getChar();
-	         switch(choice)
-	            {
-	            case 'g':
-	               totsalary=dept.getTotalSalary();
-	               putText("Total sum of all salaries is:");
-	               //putText("$ " + String.valueOf(totsalary)+" USD \n");  
-	               System.out.format("$ %,.2f USD \n",totsalary);
-	               break;
-	            case 's':
-	               dept.showAllMembers();
-	               break;
-	            case 'u':
-	               dept.unitsPerFaculty();
-	               break;
-	            case 'n':
-	            	   putText("Enter Name of a faculty from our faculty list : ");
-	            	   listAllFaculty(dept);
-	            	   String Name = getString();
-	            	   listStudentsTakingCourseByFaculty(Name,dept);
-		              
-		               break;
-	            case 'q': return;
-	            default:
-	               putText("Invalid entry\n");
-	            }  // end switch
-	         }  // end while  
-
+//	      while(true)
+//	      {
+//	         putText("Enter first letter of ");
+//	         putText("getTotalSalary, showAllMembers, unitsPerFaculty , nameAfaculty or quit : ");
+//	         int choice = getChar();
+//	         switch(choice)
+//	            {
+//	            case 'g':
+//	               totsalary=dept.getTotalSalary();
+//	               putText("Total sum of all salaries is:");
+//	               //putText("$ " + String.valueOf(totsalary)+" USD \n");  
+//	               System.out.format("$ %,.2f USD \n",totsalary);
+//	               break;
+//	            case 's':
+//	               dept.showAllMembers();
+//	               break;
+//	            case 'u':
+//	               dept.unitsPerFaculty();
+//	               break;
+//	            case 'n':
+//	            	   putText("Enter Name of a faculty from our faculty list : ");
+//	            	   listAllFaculty(dept);
+//	            	   String Name = getString();
+//	            	   listStudentsTakingCourseByFaculty(Name,dept);
+//		              
+//		               break;
+//	            case 'q': return;
+//	            default:
+//	               putText("Invalid entry\n");
+//	            }  // end switch
+//	         }  // end while  
+	      
+	      launch(args);
 	}
 	
 	
@@ -201,14 +217,6 @@ public class DepartmentApplication extends Application implements EventHandler{
 		
 	}
 
-
-	@Override
-	public void handle(Event arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 	@Override
 	public void start(Stage stage) throws Exception {
 		Group root = new Group();
@@ -248,11 +256,34 @@ public class DepartmentApplication extends Application implements EventHandler{
 		menu_showInformation.getItems().add(menu_item_studentUnderFac);
 		
 		
-		
 		add_menuBar.getMenus().add(menu_addPerson);
 		add_menuBar.getMenus().add(menu_showInformation);
 		add_menuBar.getMenus().add(menu_showRegistrar);
 		add_menuBar.getMenus().add(menu_showHelp);
+		
+		menu_item_members.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				ListView<String> list = new ListView<String>();
+				ObservableList<String> members = FXCollections.observableArrayList();
+				Label selected = new Label();
+				selected.setLayoutX(10);
+				selected.setLayoutY(115);
+				selected.setFont(Font.font("Verdana", 20));
+				
+				System.out.println("Listing all members");
+				
+				ArrayList<Person> plist = dept.getPersonList();
+				for(Person p : plist)
+				members.add(p.toString());
+				
+				list.setItems(members);
+				main_grid.add(list,3,3);
+				main_grid.add(selected,4,3);			
+				
+			}
+		});
 		
 		BorderPane borderPane = new BorderPane();
         borderPane.prefHeightProperty().bind(scene.heightProperty());
@@ -260,11 +291,23 @@ public class DepartmentApplication extends Application implements EventHandler{
         borderPane.setTop(add_menuBar);
         
 		root.getChildren().add(borderPane);
-	    
+		
+	   // root.getChildren().add(list);
 		stage.setScene(scene);
 		
 		stage.show();
 		
 	}
+	static class ColorRectCell extends ListCell<String> {
+        @Override
+        public void updateItem(String item, boolean empty) {
+            super.updateItem(item, empty);
+            Rectangle rect = new Rectangle(100, 20);
+            if (item != null) {
+                //rect.setFill(Color.GREEN);
+                setGraphic(rect);
+            }
+        }
+    }
 
 }
