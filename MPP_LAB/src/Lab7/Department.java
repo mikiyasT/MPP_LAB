@@ -19,6 +19,18 @@ public class Department {
 		
 		
 	}
+	public String toString(){
+		String result = "";
+		result += Name + "" + Location;
+		
+		Iterator it = positions.iterator();
+		while(it.hasNext()){
+			Position p = (Position)it.next();
+			result += p.toString();			
+		}
+		
+		return result;
+	}
 	public void print(){
 		System.out.println("\t -> Department Name : " + Name + " ,Location " + Location);
 		Iterator it = positions.iterator();
@@ -85,6 +97,8 @@ public class Department {
 			if(o == null)
 				return false;
 			if(!(o instanceof Department))
+				return false;
+			if(this.getClass() != o.getClass())
 				return false;
 			
 			Department d = (Department)o;

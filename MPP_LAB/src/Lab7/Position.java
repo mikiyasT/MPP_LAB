@@ -34,6 +34,13 @@ public class Position {
 		
 		departementHead = false;
 	}
+	
+	public Object clone() throws CloneNotSupportedException {
+		Position clone = (Position)super.clone();
+		//clone.position = (Position)position.clone();
+		
+		return clone;
+	}
 	public void print(){
 		System.out.println(" \t\t -> Position Title " + Title + " ,Description " + Description);
 		if(employee != null)
@@ -133,6 +140,14 @@ public class Position {
 			return true;
 		else
 			return false;
+	}
+	
+	public int hasCode(){
+		int result = 7;
+		result += Title.hashCode();
+		result += Title.hashCode();
+		result *= 31;
+		return result;
 	}
 	
 	

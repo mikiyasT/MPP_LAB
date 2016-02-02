@@ -1,6 +1,6 @@
 package Lab7;
 
-public class Employee {
+public class Employee  implements Cloneable{
 	String firstName;
 	String middleInitial;
 	String lastName;
@@ -33,6 +33,12 @@ public class Employee {
 		
 	}
 	
+	public Object clone() throws CloneNotSupportedException {
+		Employee clone = (Employee)super.clone();
+		clone.position = (Position)position.clone();
+		
+		return clone;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -119,5 +125,18 @@ public class Employee {
 		else
 			return false;
 			
+	}
+	
+	public int hashCode(){
+		int result = 7;
+		result += firstName.hashCode();
+		result += middleInitial.hashCode();
+		result += lastName.hashCode();
+		result += birthDate.hashCode();
+		result += SSN.hashCode();
+		result += Double.doubleToLongBits(salary);
+		result += position.hashCode();
+		result *= 31;
+		return result;
 	}
 }
